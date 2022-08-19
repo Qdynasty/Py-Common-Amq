@@ -3,7 +3,7 @@
 #### Python Data Process Core Library
 
 [TOC]
-### rabbitmq 公用组件 
+### rabbitmq，mqtt，kafka 公用组件 
 
 ### 公共组件使用方法
 
