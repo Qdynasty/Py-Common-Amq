@@ -1,0 +1,43 @@
+server:
+  host: 192.168.3.248
+  port: 5672
+  virtual_host: !!str /test
+  user: trunk
+  password: trunk123
+  retry_count: 30
+
+
+
+interface_bind:
+  ActStatus:
+    bind_key:
+      fmp.v1.k.state.ActStatus.#
+    queue:
+      fmp.v1.q.state.ActStatus.ad.pydp
+    durable:
+      false
+    exchange:
+      fmp.v1.e.topic.state
+    callback_agent:
+      state_agent
+    consumer_mode:
+      agent: true
+      queue: false
+
+
+  ActOrders:
+    bind_key:
+      fmp.v1.k.cmd.ActOrders.#
+    queue:
+      fmp.v1.q.cmd.ActOrders.ad.pydp
+    durable:
+      false
+    exchange:
+      fmp.v1.e.topic.cmd
+    callback_agent:
+      order_agent
+    consumer_mode:
+      agent: true
+      queue: false
+
+

@@ -1,0 +1,40 @@
+server:                                                     # 服务链接配置
+  host: 127.0.0.1
+  port: 5672
+  virtual_host: !!str /tc/test
+  user: guest
+  password: guest
+  retry_count: 30
+
+
+interface_bind:                                               # 更具 PB 接口规范&Rabbimt设计规范配置定义
+  ActStatus:                                                  # 定义接口结构
+    bind_key:                                                 # 绑定键
+      fmp.v1.k.state.ActStatus.#
+    queue:                                                    # rabbitmq 消费队列
+      fmp.v1.q.state.ActStatus.ad.pydp
+    durable:
+      false
+    exchange:                                                 # rabbitmq 交换机
+      fmp.v1.e.topic.state
+    callback_agent:                                           # 回调信号绑定别名
+      state_agent
+    consumer_mode:                                            # 下游消费数据模式
+      agent: true                                             # 信号代理开关
+      queue: true                                            # 隔离消费队列开关
+
+  ActOrders:
+    bind_key:
+      fmp.v1.k.cmd.ActOrders.#
+    queue:
+      fmp.v1.q.cmd.ActOrders.ad.pydp
+    durable:
+      false
+    exchange:
+      fmp.v1.e.topic.cmd
+    callback_agent:
+      order_agent
+    consumer_mode:
+      agent: true
+      queue: true
+

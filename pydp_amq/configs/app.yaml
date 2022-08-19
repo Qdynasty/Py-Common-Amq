@@ -1,0 +1,4 @@
+service:
+  name: PyDP-Core
+  version: v1.2.0
+  ctime: 2021-01-01
