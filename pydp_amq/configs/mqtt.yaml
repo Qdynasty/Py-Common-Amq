@@ -1,0 +1,30 @@
+server:
+  client_id: pydp
+  host: 192.168.11.249
+  port: 1883
+  keep_alive: 60
+  user: !!str  admin
+  password: !!str  public
+  clean_session: false
+  retry_count: 30
+
+
+
+interface_bind:                                               # 更具 PB 接口规范&Rabbimt设计规范配置定义
+  ArtStatus:                                                  # 定义接口结构
+    topic: fmp/state/ArtStatus/#                              # mqtt 主题划分
+    qos: 1                                                    # 信号质量
+    callback_agent:                                           # 回调信号绑定别名
+      art_status_agent
+    consumer_mode:                                            # 下游消费数据模式
+      agent: true                                             # 信号代理开关
+      queue: true
+
+  ArtOrders:
+    topic: fmp/cmd/ArtOrders/#
+    qos: 1
+    callback_agent:
+      art_orders_agent
+    consumer_mode:
+      agent: true
+      queue: true

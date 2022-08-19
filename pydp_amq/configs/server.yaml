@@ -1,0 +1,16 @@
+# 启动组件的开关
+# 启动服务关键词 key
+#  rmq ==> Rabbitmq
+#  mqtt = MQTT
+#  此处的 key 值对应当前目录 yaml 文件名
+#  别名规则 别名前缀 启动多服务间隔标识 "-"
+
+server_switch:
+  rmq: true
+  rmq_1: true
+  mqtt: true
+  mqtt_1: true
+  kafka: true
+
+
+

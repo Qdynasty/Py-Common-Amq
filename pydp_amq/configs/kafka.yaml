@@ -1,0 +1,18 @@
+server:
+  servers:
+    - 192.168.3.248:9092
+  sub_topics:
+    - fmp.v1.k.state.ActStatus.fms.A001
+  pub_topics:
+    - fmp.v1.k.state.ActStatus.fms.A001
+  retry_count: 30
+
+interface_bind:                                               # 更具 PB 接口规范&kafka设计规范配置定义
+  ActStatus:                                                  # 定义接口结构
+    topic:
+      fmp.v1.k.state.ActStatus.#                              # kafka 主题划分
+    callback_agent:                                           # 回调信号绑定别名
+      art_status_agent
+    consumer_mode:                                            # 下游消费数据模式
+      agent: true                                             # 信号代理开关
+      queue: true

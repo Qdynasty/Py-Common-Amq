@@ -1,0 +1,53 @@
+version: 1
+formatters:
+  simple:
+    format: '%(asctime)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s'
+  standard:
+    format: '%(asctime)s - %(name)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s'
+  json:
+    class: 'libs.logger.JsonFormatter'
+  error:
+    class: 'logging.Formatter'
+    datefmt: '[%Y-%m-%d %H:%M:%S]'
+    format: '%(asctime)s[%(levelname)s]: %(pathname)s[line:%(lineno)d] - %(message)s'
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: simple
+    stream: ext://sys.stdout
+  app:
+    backupCount: 5
+    level: INFO
+    interval: 1
+    when: midnight
+    filename: ../DBStore_logs/app.log
+    formatter: standard
+    class: logging.handlers.TimedRotatingFileHandler
+    encoding: utf-8
+  error:
+    backupCount: 5
+    level: ERROR
+    interval: 1
+    when: midnight
+    filename: ../DBStore_logs/error.log
+    formatter: error
+    class: logging.handlers.TimedRotatingFileHandler
+    encoding: utf-8
+  json:
+    backupCount: 5
+    level: INFO
+    interval: 1
+    when: midnight
+    filename: logs/json.log
+    formatter: json
+    class: logging.handlers.TimedRotatingFileHandler
+    encoding: utf-8
+root:
+  level: INFO
+  handlers: [console, app, error]
+loggers:
+  json:
+    level: INFO
+    handlers: [json]
+    propagate: false
