@@ -1,0 +1,8 @@
+click==7.1.2
+arrow==1.0.3
+pika==1.2.0
+PyYAML==5.4.1
+cython==0.29.23
+kafka-python==2.0.2
+paho-mqtt>=1.5.1
+mergedict
