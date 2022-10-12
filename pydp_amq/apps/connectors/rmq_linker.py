@@ -36,7 +36,7 @@ class Service(object):
         通道检测
         @return:
         """
-        if not hasattr(local, 'channel'):
+        if not hasattr(local, 'channel') or local.channel.is_closed:
             self.connection = pika.BlockingConnection(self.parameters)
             local.channel = self.connection.channel()
         return local.channel
@@ -72,7 +72,8 @@ class Service(object):
             thread = threading.Thread(target=exec)
             thread.start()
             thread.join()
-
+        else:
+            return True
         if 'ActStatus' not in routing_key:
             logger.debug('[PRODUCER] send routing_key:  <{}>  \n\r   data:  < {} >'.format(routing_key, data))
 

@@ -66,7 +66,7 @@ class MqSect(object):
     def push_data(self, inter_pb, routing_key, data):
         exchange = self.bind_option.get(inter_pb).get('exchange')
         queue = self.bind_option.get(inter_pb).get('queue')
-        self.rmq_client.publish_msg(
+        return self.rmq_client.publish_msg(
             data=data,
             exchange=exchange,
             queue=queue,
