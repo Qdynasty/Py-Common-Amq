@@ -91,5 +91,5 @@ if __name__ == '__main__':
 ## install
 
 ```
-$ pip3 install git+http://git-rd.trunk.tech/tpg/common-module.git
+$ pip3 install git+http://github.com:Qdynasty/Py-Common-Amq.git
 ```
